@@ -1,0 +1,112 @@
+<%- include('header') %>
+<% posts.forEach(post => { %>
+  
+    <div class="col s12 m7 container" id="post<% post.idPost%>">
+          <form action="/postDelete/<%= post.idPost %>" method="post">
+            <button class="btn waves-effect waves-light red" type="submit">Supprimer
+              <i class="material-icons right">clear</i>
+            </button>
+          </form>
+        <h2 class="header"> <%= post.postTitle %> </h2>
+        <div class="card horizontal">
+          <% if(post.postImage) { %>
+            <div class="card-image">
+                <img src="<%= post.postImage %>">
+            </div>
+          <% } %> 
+          <div class="card-stacked">
+            <div class="card-content">
+              <p><%= post.postText %></p>
+            </div>
+          </div>
+        </div>
+
+        <i class="medium material-icons right commentBtn">comment</i>
+        
+        
+        <% let like = 0 %>
+
+        <% likes.forEach(plus => { %>  
+          <% if (plus.like_idPost === post.idPost) { %>
+            <% like++ %>
+          <% } %>
+        <% }) %>
+        
+        <% if (me) { %>
+        
+          <form action="/like" method="post">
+            <input type="hidden" name="like_idPost" value="<%= post.idPost %>"/>
+            <input type="hidden" name="like_idUser" value="<%= me.idUser %>"/> 
+            <button class="btn waves-effect waves-light red " type="submit"> <%= like %>
+              <i class="material-icons right">favorite</i>
+            </button>
+          </form>
+          <form action="/likeDelete" method="post">
+            <input type="hidden" name="like_idPost" value="<%= post.idPost %>"/>
+            <input type="hidden" name="like_idUser" value="<%= me.idUser %>"/> 
+            <button class="btn waves-effect waves-light grey darken-1" type="submit">
+              <i class="material-icons right">sentiment_dissatisfied</i>
+            </button>
+          </form>
+        <% } %>
+
+
+        <form action="/comment" method="post">
+          <!-- <input type="hidden" name="comment_idPost" value="<%= post.idPost %>">
+          <input type="text" name="commentText">
+          <input type="text" name="commentImage">
+          <button type="submit"> Send </button> -->
+          <div class="row">
+            <form class="col s12" action="/comment" method="post">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="commentText"/>
+                  <label for="email">Commentaire</label>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="commentImage"/>
+                  <label for="email">Image URL</label>
+                  <span class="helper-text" data-error="wrong" data-success="right">Mettez ici l'URL de l'image à envoyer.</span>
+                </div>
+              </div>
+              <button class="btn " type="submit">Envoyer</button>
+            </form>
+          </div>
+          
+        </form>
+
+        
+        <!--  <button><a href="/postDelete/<%= post.idPost %>"></a></button> -->
+        <!-- result.idComment.forEach(comment => {  -->
+          
+          <% comments.forEach(comment => { %>
+            <% if (post.idPost === comment.comment_idPost) { %>
+          
+              <div class="col s12 m7 container comment_container" dataset="post<% post.idPost%>">
+                <!-- <h2 class="header"> <%= post.postTitle %> </h2> -->
+                <div class="card horizontal">
+                  <% if(comment.commentImage) { %>
+                    <div class="card-image">
+                        <img src="<%= comment.commentImage %>" alt="" />
+                    </div>
+                  <% } %> 
+                  <div class="card-stacked">
+                    <div class="card-content">
+                      <p> <%= comment.commentText %></p>
+                    </div>
+                  </div>
+                </div>
+                <form action="/commentDelete/<%= comment.idComment %>" method="post">
+                  <input type="submit" value="Supprimer"/>
+                </form>
+                
+              </div>
+              <% } %>
+          <% }) %>
+    </div>
+<% }) %>
+</body>
+</html>

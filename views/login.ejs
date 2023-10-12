@@ -1,7 +1,7 @@
 <%- include('header') %>
 
 <% if (errMess) { %>
-  <p> <%= errMess %> </p>
+  <p style="color: red;"> <%= errMess %> </p>
 <% } %>
 <div id="loginContainer">
           <form id="login" action="/login" method="post">
@@ -39,7 +39,7 @@
           
             <!-- Register buttons -->
             <div class="text-center">
-              <p>Not a member? <a href="#!">Register</a></p>
+              <p>Not a member? <a href="#Register">Register</a></p>
               <!-- <p>or sign up with:</p> -->
               <!-- <button type="button" class="btn btn-secondary btn-floating mx-1">
                 <i class="fab fa-facebook-f"></i>
@@ -60,4 +60,7 @@
         </form> -->
 
 </div>
+<script src="/login.js"></script>
+</body>
+</html>
 

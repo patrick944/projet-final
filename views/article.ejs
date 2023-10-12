@@ -1,0 +1,64 @@
+<%- include('header') %>
+
+<% if(locals.post){ %>
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img style=" width: 80%;" class="d-block w-100" src="images/<%= post.postimage %>" alt="">
+        </div>
+        </div>
+    </div>
+    <div>
+        <h1><%= post.titre %></h1>
+        <p><%= post.description %></p>
+    </div>
+    <br>
+    <div>
+        <p style=" color: red;"><%= post.postdate %></p>
+        <p style=" color: red;"><%= post.idpost %></p>
+
+    </div>
+
+    <!-- <a href="/update-article?id=<%= post.idpost %>"></a> <img style="width: 40px; margin-left: 30px" src="images/edit.png" alt=""> -->
+    <a href="/updatePost?id=<%= post.idpost %>"> <img style="width: 40px; margin-left: 30px" src="images/edit.png" alt="edit-icon"></a>
+    
+    <a href="/delete?id=<%= post.idpost %>"><img style="width: 40px; margin-left: 30px" src="images/bin.png" alt="delete-icon"></a> 
+
+    <form action="/comment" method="post" style="width: 40%; margin-block: 5rem; margin-left: 4rem;">
+        <h1>Commenter</h1>
+        <div class="form-group">
+          <label for="Commenter">Commenter</label>
+          <input type="text" class="form-control" id="Titre"  placeholder="Commenter" name="comment">
+          <input type="text" class="form-control" id="Titre"  placeholder="Commenter" name="comment_idpost" value="<%= post.idpost %>" hidden>
+          <input type="text" class="form-control" id="Titre"  placeholder="Commenter" name="comment_iduser" value="<%= me.id %>" hidden>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+      <% comments.forEach(comment => { %>
+      
+        <% if(comment.comment_idpost === post.idpost) { %>
+            <% users.forEach(user => { %>
+                <% if(user.id === comment.comment_iduser) { %>
+                    
+                    <div class="card" style="width: 29rem; margin-left: 30px ;margin-top: 30px;">
+                        <div style="background-color: red;">
+                            <p style="margin-left: 0.75rem;"> Nom : <%= user.name %></p>
+                            <p style="margin-left: 0.75rem;"> Email : <%= user.email %></p>
+                        </div>
+                        
+                        <div class="card-body">
+                            <p class="card-text"><%= comment.comment %></p>
+                            <!-- <a href="/article?idpost=<%= post.idpost %>" class="btn btn-primary">Voir article</a> -->
+                        
+                        
+                        
+                        </div>
+                    </div>
+                    <a href="/delete-comment?idcomment=<%= comment.idcomment %>"><img style="width: 40px; margin-left: 30px" src="images/bin.png" alt="delete-icon"></a>
+                    <a href="/updateComment?idcomment=<%= comment.idcomment %>"> <img style="width: 40px; margin-left: 30px" src="images/edit.png" alt="edit-icon"></a>
+                <% } %>
+            <% }) %>
+        <% } %>
+    <% }) %>
+<% } %>

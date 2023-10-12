@@ -1,7 +1,7 @@
 <%- include('header') %>
 
 <% if (errMess) { %>
-  <p> <%= errMess %> </p>
+  <p style="color: red;"> <%= errMess %> </p>
 <% } %>
 <div id="registerContainer">
       <form id="register" action="/user" method="post">
@@ -14,29 +14,30 @@
               <label class="form-label" for="form3Example1"> name</label>
             </div>
           </div>
+          
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <input type="email" name="email" id="form3Example3" class="form-control" />
+            <label class="form-label" for="form3Example3">email </label>
+          </div>
+          
+          <!-- Password input -->
+          <div class="form-outline mb-4">
+            <input type="password" name="password" id="form3Example4" class="form-control" />
+            <label class="form-label" for="form3Example4">password</label>
+          </div>
+          
+          <!-- confirmPassword input -->
           <div class="col">
             <div class="form-outline">
-              <input type="text" name="role" id="form3Example2" class="form-control" />
-              <label class="form-label" for="form3Example2">role</label>
+              <input type="password" name="confirmPassword" id="form3Example2" class="form-control" />
+              <label class="form-label" for="form3Example2">confirmPassword</label>
             </div>
           </div>
         </div>
-      
-        <!-- Email input -->
-        <div class="form-outline mb-4">
-          <input type="email" name="email" id="form3Example3" class="form-control" />
-          <label class="form-label" for="form3Example3">email </label>
-        </div>
-      
-        <!-- Password input -->
-        <div class="form-outline mb-4">
-          <input type="password" name="password" id="form3Example4" class="form-control" />
-          <label class="form-label" for="form3Example4">password</label>
-        </div>
-      
         <!-- Photoprofil input -->
         <div class="form-outline mb-4">
-          <input type="text" name="photoprofil" id="form3Example4" class="form-control" />
+          <input type="file" name="image" id="form3Example4" class="form-control" />
           <label class="form-label" for="form3Example4">photoprofil</label>
         </div>
       
@@ -51,8 +52,8 @@
         <!-- Submit button -->
         <button type="submit" class="btn btn-primary btn-block mb-4">Sign up</button>
       
-        <!-- Register buttons -->
-        <!-- <div class="text-center">
+        <!-- Register buttons
+        <div class="text-center">
           <p>or sign up with:</p>
           <button type="button" class="btn btn-secondary btn-floating mx-1">
             <i class="fab fa-facebook-f"></i>

@@ -1,3 +1,5 @@
+
+
 * {
     margin: 0;
 }
@@ -41,10 +43,39 @@
     cursor: pointer;
 }
 
-p {
+.errMess {
     color: red;
 }
 
+.succMess {
+    color: rgb(0, 199, 0);
+}
+
+.likeDislike {
+    display: flex;
+    margin-top: 5px;
+    gap: 5px;
+}
+
+#like {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+#like img {
+    height: 30px
+}
+
+#dislike {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+#dislike img {
+    height: 30px
+}
 /* ////////////////////////////css login/////////////////////////////// */
 
 #login{
@@ -53,6 +84,7 @@ p {
   flex-direction: column;
   justify-content: center;
 }
+
 #loginContainer{
   display: flex;
   flex-direction: column;
@@ -79,5 +111,5 @@ p {
 /* ///////////////////////////////////////// logo//////////////////////////////// */
 
 #logo {
-width: 18px;
+width: 6rem;
 }

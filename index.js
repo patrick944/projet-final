@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const apiRoutes = require('./routes/apiRoute')
 const pageRoutes = require('./routes/pagesRoutes')
-const commentsRoutes = require('./routes/commentRouter')
+// const commentsRoutes = require('./routes/commentRouter')
 
 
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -21,8 +21,8 @@ app.set('view engine', 'ejs');
 // use route 
 app.use('/', apiRoutes)
 app.use('/', pageRoutes)
-app.use('/comments', commentsRoutes)
-
+// app.use('/comments', commentsRoutes)
+console.log(process.env.PORT)
 app.listen(process.env.PORT, () => {
     console.log(`Listening on port ${process.env.PORT}`);
 })
